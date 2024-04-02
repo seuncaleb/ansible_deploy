@@ -1,0 +1,44 @@
+---
+- name: Deploy GitHub repo to Apache2
+  hosts: all
+  become: true
+  gather_facts: false
+
+
+  tasks:
+    - name: Ensure Apache2 is installed
+      package:
+        name: apache2
+        state: present
+      when: ansible_distribution == 'Ubuntu'  
+
+    - name: Ensure httpd is installed
+      package:
+        name: httpd
+        state: present
+      when: ansible_distribution == 'CentOS'  
+
+    - name: Clone GitHub repository
+      git:
+        repo: "https://github.com/seuncaleb/assignment3.git"
+        dest: "/var/www/html"
+        version: "main" 
+
+    - name: Set ownership and permissions
+      file:
+        path: "/var/www/html"
+        owner: apache   
+        group: apache   
+        mode: "0755"
+
+    - name: Restart Apache2 service
+      service:
+        name: apache2
+        state: restarted
+      when: ansible_distribution == 'Ubuntu'  
+
+    - name: Restart httpd service
+      service:
+        name: httpd
+        state: restarted
+      when: ansible_distribution == 'CentOS'  
