@@ -2,6 +2,7 @@
 - name: Deploy GitHub repo to Apache2
   hosts: all
   become: true
+  become_user: ansible
   gather_facts: false
 
   vars:
