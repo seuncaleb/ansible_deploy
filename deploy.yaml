@@ -32,8 +32,8 @@
     - name: Set ownership and permissions
       file:
         path: "{{ apache_path }}"
-        owner: ansible   
-        group: ansible   
+        owner: " ansible  " 
+        group: " ansible  " 
         mode: "0755"
 
     - name: Restart Apache2 service
