@@ -6,8 +6,8 @@
   gather_facts: false
 
   vars:
-    github_url: "https://github.com/seuncaleb/assignment3.git"
-    apache_path: "/var/www/html"
+    github_url: https://github.com/seuncaleb/assignment3.git
+    apache_path: /var/www/html
 
 
   tasks:
